@@ -1,0 +1,11 @@
+# MacOS system files
+.DS_Store
+
+# images
+img/
+
+# video files
+assets/video/
+
+#VScode Settings
+.vscode/
