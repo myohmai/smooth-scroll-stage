@@ -9,3 +9,7 @@ assets/video/
 
 #VScode Settings
 .vscode/
+
+# Not Chasing compiled css
+assets/css/smooth-scroll-stage.css
+assets/css/smooth-scroll-stage.css.map
