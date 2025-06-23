@@ -1,0 +1,167 @@
+@charset "UTF-8";
+html, body{
+  margin: 0;
+  padding: 0;
+  font-family:'baskerville', 'BIZ UDGothic', 'Hiragino Kaku Gothic ProN W3', selif;
+  overflow: scroll;
+}
+.section_top, .section_bottom {
+  width: 100%;
+  height: 100vh;
+}
+
+.section__wrapper {
+  position: relative;
+  width: 100%;
+}
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.section.active{
+  position: fixed;
+  top: 0;
+}
+#service-intro_svg--linear {
+  fill: url(#skills-section_gradient--linear);
+}
+#service-intro_svg--radial {
+  fill: url(#skills-section_gradient--radial);
+}
+.section_container {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  height: 80%;
+  color: #FFF;
+}
+@media screen and (orientation: portrait) {
+  .section_container {
+		top : 0;
+    height: 100%;
+    flex-direction: column;
+     align-items: space-between;
+    justify-content: center;
+  }
+}
+.section_icon-wrapper {
+  position: relative;
+  width: 39%;
+  height: fit-content;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (orientation: portrait) {
+  .section_icon-wrapper {
+    width: 80vw;
+    height: 50%;
+    display: block;
+  }
+}
+
+.section_icon-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 300px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+    }
+.section_icon {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.section_icon--01 {
+  background-color: #F4C5D7;
+}
+.section_icon--02 {
+  background-color: #F2B3C8;
+}
+.section_icon--03 {
+  background-color: #B794A1;
+}
+.section_icon--04 {
+  background-color: #998666;
+}
+.section_icon--05 {
+  background-color: #C2B3B3;
+}
+/* アイコンの出し変え */
+.section_icon.section_icon--center {
+  transform: translate(0, 0) rotate(0) scale(100%);
+  z-index: +1;
+}
+.section_icon.section_icon--left {
+  transform: translate(-80%, 20%) rotate(-15deg) scale(60%);
+  opacity: 0.8;
+}
+.section_icon.section_icon--right {
+  transform: translate(80%, 20%) rotate(15deg) scale(60%);
+  opacity: 0.8;
+}
+.section_icon.section_icon--hidden-right {
+  transform: translate(120%, 30%) rotate(30deg) scale(30%);
+  opacity: 0;
+}
+.section_icon.section_icon--hidden-left {
+  transform: translate(-120%, 30%) rotate(-30deg) scale(30%);
+  opacity: 0;
+}
+
+.section_title-wrapper {
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+}
+.section_title {
+  min-width: 100%;
+  display: none;
+}
+.section_title--line {
+  width: 100%;
+  height: 1px;
+  background-color: #FFF;
+  border-radius: 1px;
+}
+.section_title--ja {
+  text-align: right;
+}
+.section_description-wrapper {
+	position: relative;
+	display: block;
+  width: 39%;
+  height: 50%;
+  overflow: hidden;
+}
+@media screen and (orientation: portrait) {
+  .section_description-wrapper {
+    width: 80%;
+    height : 35%;
+  }
+}
+.section_description {
+	position: absolute;
+	inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+.section_description-title--en {
+  text-align: right;
+}
+.section_description--ja {
+  display: block;
+}
+.section_description--en {
+  display: block;
+  text-align: right;
+}

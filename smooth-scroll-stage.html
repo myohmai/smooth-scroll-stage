@@ -3,9 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>smooth-scroll-stage</title>
 </head>
 <body>
-    
+    <section class="section_top"></section>
+<section class="section__wrapper">
+    <div class="section">
+        <svg xmlns="http://www.w3.org/2000/svg" id="gradient-svg" width="100%" height="100%">
+        <defs>
+            <!--  gradient -->
+            <!--    linear    -->
+            <linearGradient id="skills-section_gradient--linear" x1="0" x2="0" y1="0" y2="1">
+            <stop class="skills-section_gradient--01" stop-color="#F2B3C8" offset="0%" />
+            <stop class="skills-section_gradient--02" stop-color="#E981A4" offset="50%" />
+            <stop class="skills-section_gradient--03"  stop-color="#AF617B" offset="100%" />
+            </linearGradient>
+            <!--  radial    -->
+            <radialGradient id="skills-section_gradient--radial" cx="0" cy="50%" r="100%">
+            <stop offset="0%" stop-color="#F2B3C8" id="radial-stop_01" />
+            <stop offset="50%" stop-color="#E981A4" id="radial-stop_02" />
+            <stop offset="100%" stop-color="#AF617B" id="radial-stop_02" />
+            </radialGradient>
+            <!--    filter    -->
+            <filter id="noise_hardlight">
+            <feTurbulence  type="fractalNoise" baseFrequency="0.8" numOctaves="3" result="turbulance" />
+            <feBlend in="SourceGraphic" in2="turbulance" mode="hard-light"/>
+            </filter>
+        </defs>
+        <rect x="0" y="0" width="100%" height="100%"  id="service-intro_svg--linear" />
+        <rect x="0" y="0" width="100%" height="100%"  id="service-intro_svg--radial" filter="url(#noise_hardlight)" />
+        </svg>
+        <!--  container  -->
+        <div class="section_container">
+        <div class="section_icon-wrapper">
+            <div class="section_icon-container">
+            <div class="section_icon section_icon--01 section_icon--center"></div>
+            <div class="section_icon section_icon--02 section_icon--right"></div>
+            <div class="section_icon section_icon--03 section_icon--hidden-right"></div>
+            <div class="section_icon section_icon--04 section_icon--hidden-left"></div>
+            <div class="section_icon section_icon--05 section_icon--left"></div>
+            </div>
+            <div class="section_title-wrapper">
+            <div class="section_title section_title--01">
+                <h2 class="section_title--en">Title_01</h2>
+                <div class="section_title--line"></div>
+                <h3 class="section_title--ja">タイトル_01</h3>
+            </div>
+            <div class="section_title section_title--02">
+                <h2 class="section_title--en">Title_02</h2>
+                <div class="section_title--line"></div>
+                <h3 class="section_title--ja">タイトル_02</h3>
+            </div>
+            <div class="section_title section_title--03">
+                <h2 class="section_title--en">Title_03</h2>
+                <div class="section_title--line"></div>
+                <h3 class="section_title--ja">タイトル_03</h3>
+            </div>
+            <div class="section_title section_title--04">
+                <h2 class="section_title--en">Title_04</h2>
+                <div class="section_title--line"></div>
+                <h3 class="section_title--ja">タイトル_04</h3>
+            </div>
+            <div class="section_title section_title--05">
+                <h2 class="section_title--en">Title_05</h2>
+                <div class="section_title--line"></div>
+                <h3 class="section_title--ja">タイトル_05</h3>
+            </div>
+            </div>
+        </div>
+        <div class="section_description-wrapper">
+            <div class="section_description section_description--01">
+            <h4 class="section_description-title--ja">説明タイトル01</h4>
+            <h5 class="section_description-title--en">title</h5>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            </div>
+
+            <div class="section_description section_description--02">
+            <h4 class="section_description-title--ja">説明タイトル02</h4>
+            <h5 class="section_description-title--en">title</h5>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            </div>
+            <div class="section_description section_description--03">
+            <h4 class="section_description-title--ja">説明タイトル03</h4>
+            <h5 class="section_description-title--en">title</h5>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            </div>
+            <div class="section_description section_description--04">
+            <h4 class="section_description-title--ja">説明タイトル04</h4>
+            <h5 class="section_description-title--en">title</h5>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            </div>
+            <div class="section_description section_description--05">
+            <h4 class="section_description-title--ja">説明タイトル05</h4>
+            <h5 class="section_description-title--en">title</h5>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            <span class="section_description--ja">説明文</span>
+            <span class="section_description--en">Description</span>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollToPlugin.min.js"></script>
+<section class="section_bottom"></section>
 </body>
 </html>
