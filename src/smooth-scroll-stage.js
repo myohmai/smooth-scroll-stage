@@ -19,8 +19,10 @@ window.addEventListener("load", () => {
     function setScrollTriggers(){
         // Reset scrollTop and transforms before measuring scrollHeight
         document.querySelectorAll('.section_description').forEach(el => el.scrollTop = 0);
-        gsap.set('.section, .section_description', { clearProps: "all" });
+        gsap.set('.section', { clearProps: "all" });
         ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        
+
         setTimeout(() => {
         // descriptinの高さ
           let descriptionWrapper = document.querySelector('.section_description-wrapper');
@@ -57,7 +59,7 @@ window.addEventListener("load", () => {
             description03ScrollHeight +
             description04ScrollHeight +
             description05ScrollHeight +
-            window.innerHeight * 2;
+            window.innerHeight;
           function setSectionHeight(){
           sectionWrapper.style.height = sectionWrapperHeight + 'px';
           }
@@ -149,6 +151,7 @@ window.addEventListener("load", () => {
         let secWrap = document.querySelector('.section__wrapper');
         let secWrapOffset = secWrap.getBoundingClientRect().top + window.scrollY;
       
+
           ScrollTrigger.create({
               id: 'wholeanim',
               trigger: '.section__wrapper',
@@ -158,14 +161,11 @@ window.addEventListener("load", () => {
               pinSpacing: false,
               scrub: true,
               invalidateOnRefresh: true,
-              markers: true
+              markers: true,
+              onLeave: () => {
+                ScrollTrigger.getById('wholeanim')?.disable();
+              }
           });	
-        
-        let wholeTl = gsap.timeline();
-        wholeTl.set('.section_description',{
-          y : `+=${description01.clientHeight}px`,
-          opacity : 0
-        })
 
           // アニメーション01
         let animation01 = ScrollTrigger.create({
@@ -272,10 +272,7 @@ window.addEventListener("load", () => {
           });
           
           let tl03 = gsap.timeline();
-          tl03.fromTo('.section_description--01',{
-            y : 0,
-            opacity : 1
-          },{
+          tl03.to('.section_description--01',{
             y : `-=${descriptionWrapper.clientHeight * 1.1 }`,
             opacity : 0,
             scrollTrigger :{
@@ -349,10 +346,7 @@ window.addEventListener("load", () => {
           })
           
           let tl05 = gsap.timeline();
-          tl05.fromTo('.section_description--02',{
-            y : 0,
-            opacity : 1
-          },{
+          tl05.to('.section_description--02',{
             y : `-=${descriptionWrapper.clientHeight * 1.1 }`,
             opacity : 0,
             scrollTrigger :{
@@ -427,10 +421,7 @@ window.addEventListener("load", () => {
           })
           
             let tl07 = gsap.timeline();
-          tl07.fromTo('.section_description--03',{
-            y : 0,
-            opacity : 1
-          },{
+          tl07.to('.section_description--03',{
             y : `-=${descriptionWrapper.clientHeight * 1.1 }`,
             opacity : 0,
             scrollTrigger :{
@@ -505,10 +496,7 @@ window.addEventListener("load", () => {
           })
           
           let tl09 = gsap.timeline();
-            tl09.fromTo('.section_description--04',{
-            y : 0,
-            opacity : 1
-          },{
+            tl09.to('.section_description--04',{
             y : `-=${descriptionWrapper.clientHeight * 1.1 }`,
             opacity : 0,
             scrollTrigger :{
@@ -566,7 +554,12 @@ window.addEventListener("load", () => {
             end: () => `+=${description05.clientHeight}`,
             scrub: true,
             invalidateOnRefresh: true,
-            markers: true
+            markers: true,
+            onEnterBack: () => {
+              gsap.set('.section', { y: 0 });
+              ScrollTrigger.getById('wholeanim')?.enable();
+              ScrollTrigger.refresh();
+            }
           })
           let tl11 = gsap.timeline();
             tl11.to('.section',{
@@ -582,6 +575,7 @@ window.addEventListener("load", () => {
     }
     // end of createScrollTrigger
     setScrollTriggers();
+
     ScrollTrigger.refresh();
 
     // リサイズ時に関数を再実行
