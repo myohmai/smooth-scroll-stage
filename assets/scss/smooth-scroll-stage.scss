@@ -96,25 +96,31 @@ html, body{
   background-color: #C2B3B3;
 }
 /* アイコンの出し変え */
-.section_icon.section_icon--center {
-  transform: translate(0, 0) rotate(0) scale(100%);
-  z-index: +1;
-}
-.section_icon.section_icon--left {
-  transform: translate(-80%, 20%) rotate(-15deg) scale(60%);
-  opacity: 0.8;
-}
-.section_icon.section_icon--right {
-  transform: translate(80%, 20%) rotate(15deg) scale(60%);
-  opacity: 0.8;
-}
-.section_icon.section_icon--hidden-right {
-  transform: translate(120%, 30%) rotate(30deg) scale(30%);
-  opacity: 0;
-}
-.section_icon.section_icon--hidden-left {
-  transform: translate(-120%, 30%) rotate(-30deg) scale(30%);
-  opacity: 0;
+.section_icon {
+  &--center {
+    transform: translate(0, 0) rotate(0) scale(100%);
+    z-index: 1;
+  }
+
+  &--left {
+    transform: translate(-80%, 20%) rotate(-15deg) scale(60%);
+    opacity: 0.8;
+  }
+
+  &--right {
+    transform: translate(80%, 20%) rotate(15deg) scale(60%);
+    opacity: 0.8;
+  }
+
+  &--hidden-right {
+    transform: translate(120%, 30%) rotate(30deg) scale(30%);
+    opacity: 0;
+  }
+
+  &--hidden-left {
+    transform: translate(-120%, 30%) rotate(-30deg) scale(30%);
+    opacity: 0;
+  }
 }
 
 .section_title-wrapper {
