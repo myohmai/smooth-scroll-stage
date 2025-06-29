@@ -1,7 +1,24 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-
+import {
+    stage1,
+    stage2,
+    stage3,
+    stage4,
+    stage5,
+    flowerIn,
+    flowerOut,
+    ribbonIn,
+    ribbonOut,
+    butterflyIn,
+    butterflyOut,
+    heartIn,
+    heartOut,
+    roseIn,
+    roseOut
+  } from '/src/gradient-controller.js';
+import '../assets/scss/gradient-controller.scss';
 
 window.addEventListener("load", () => {
     gsap.registerPlugin(ScrollTrigger,ScrollToPlugin);
@@ -175,6 +192,9 @@ window.addEventListener("load", () => {
                 end: () => `+=${secWrapOffset}`,
                 scrub: true,
                 invalidateOnRefresh: true,
+                onEnter: () => {
+                  flowerIn().play();
+                },
                 markers: true
           });
         
@@ -235,7 +255,11 @@ window.addEventListener("load", () => {
             scrub: true,
             invalidateOnRefresh: true,
             markers: true,
+            onEnterBack: ()=>{
+              flowerIn().play();
+            },
             onLeave: ()=>{
+              flowerOut().play();
               gsap.timeline()
               .titleout('.section_title--01', { duration : 0.025 })
             }
