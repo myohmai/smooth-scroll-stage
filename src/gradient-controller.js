@@ -52,7 +52,7 @@ gsap.registerEffect({
         color01: gradient.color1,
         color02: gradient.color2,
         color03: gradient.color3,
-        gradientTarget: "#skills-section_gradient--radial",
+        gradientTarget: "#sss_gradient--radial",
         stop01: "#radial-stop_01",
         stop02: "#radial-stop_02",
         stop03: "#radial-stop_03"
@@ -121,9 +121,6 @@ function stage5() {
 };
 
 
-gsap.registerEffect({
-    name: "gradColors"
-})
 gsap.registerEffect({
     name: "fadein",
     effect: (targets, config) => {

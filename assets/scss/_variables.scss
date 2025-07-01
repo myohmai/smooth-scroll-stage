@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+$primary-700 : #754152;
+$primary-600 : #AF617B;
+$primary-500 : #E981A4;
+$primary-400 : #ED9AB6;
+$primary-300 : #F2B3C8;
+$primary-200 : #F6CDDB;
+$primary-100 : #FBE6ED;
+
+$secondary-700 : #7A636C;
+$secondary-600 : #B794A1;
+$secondary-500 : #F4C5D7;
+$secondary-400 : #F6D1DF;
+$secondary-300 : #F8DCE7;
+$secondary-200 : #FBE8EF;
+$secondary-100 : #FDF3F7;
+
+$accent-700 : #665944;
+$accent-600 : #998666;
+$accent-500 : #CCB288;
+$accent-400 : #D6C1A0;
+$accent-300 : #E0D1B8;
+$accent-200 : #EBE0CF;
+$accent-100 : #F5F0E7;
+
+$essential-700 : #332121;
+$essential-600 : #4D3232;
+$essential-500 : #664242;
+$essential-400 : #856868;
+$essential-300 : #A38E8E;
+$essential-200 : #C2B3B3;
+$essential-100 : #E0D9D9;
+
+$text-color-700 : #3A3438;
+$text-color-600 : #574D53;
+$text-color-500 : #74676F;
+$text-color-400 :  #90858C;
+$text-color-300 : #ACA4A9;
+$text-color-200 : #C7C2C5;
+$text-color-100 : #E3E1E2;
+
+/* 間隔 */
+$gap-s : 16px;
+$gap-m : 24px;
+$gap-l : 32px;
+$gap-x : 40px;
+$gap-xxl : 48px;
+$gap-xs : 10px;
+$gap-xxs : 8px;
+
+/* side-margin */
+$side-margin : 9vw;
+$my-column-gap : 10px;
+$my-column-width : calc(calc(100vw - var(--side-margin)*2 - var(--my-column-gap)*3) / 4);
+
+/* side-margin lg */
+$side-margin-lg : 10vw;
+$my-column-gap-lg: 16px;
+$my-column-width-lg: calc(calc(100vw - var(--side-margin)*2 - var(--my-column-gap)*11) / 12);

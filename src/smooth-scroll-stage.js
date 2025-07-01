@@ -35,42 +35,41 @@ window.addEventListener("load", () => {
 
     function setScrollTriggers(){
         // Reset scrollTop and transforms before measuring scrollHeight
-        document.querySelectorAll('.section_description').forEach(el => el.scrollTop = 0);
-        gsap.set('.section', { clearProps: "all" });
+        document.querySelectorAll('.sss_description').forEach(el => el.scrollTop = 0);
+        gsap.set('.smooth-scroll-stage', { clearProps: "all" });
         ScrollTrigger.getAll().forEach(trigger => trigger.kill());
         
 
         setTimeout(() => {
         // descriptinの高さ
-          let descriptionWrapper = document.querySelector('.section_description-wrapper');
+          let descriptionWrapper = document.querySelector('.sss_description-wrapper');
           let descriptionWrapperScrollHeight = descriptionWrapper.scrollHeight || 0;
           let descriptionWrapperHeight = descriptionWrapperScrollHeight - descriptionWrapper.clientHeight || 0;
 
-          let description01 = document.querySelector('.section_description--01');
+          let description01 = document.querySelector('.sss_description--01');
           let description01ScrollHeight = description01.scrollHeight || 0;
           let description01Height = description01ScrollHeight - description01.clientHeight || 0;
 
-          let description02 = document.querySelector('.section_description--02');
+          let description02 = document.querySelector('.sss_description--02');
           let description02ScrollHeight = description02.scrollHeight || 0;
           let description02Height = description02ScrollHeight - description02.clientHeight || 0;
 
-          let description03 = document.querySelector('.section_description--03');
+          let description03 = document.querySelector('.sss_description--03');
           let description03ScrollHeight = description03.scrollHeight || 0;
           let description03Height = description03ScrollHeight - description03.clientHeight || 0;
 
-          let description04 = document.querySelector('.section_description--04');
+          let description04 = document.querySelector('.sss_description--04');
           let description04ScrollHeight = description04.scrollHeight || 0;
           let description04Height = description04ScrollHeight - description04.clientHeight || 0;
 
-          let description05 = document.querySelector('.section_description--05');
+          let description05 = document.querySelector('.sss_description--05');
           let description05ScrollHeight = description05.scrollHeight || 0;
           let description05Height = description05ScrollHeight - description05.clientHeight || 0;
 
 
         // section_wrapperのheightを指定
-          const sectionWrapper = document.querySelector('.section__wrapper');
+          const sectionWrapper = document.querySelector('.sss-wrapper');
           let sectionWrapperHeight =
-            descriptionWrapperScrollHeight +
             description01ScrollHeight +
             description02ScrollHeight +
             description03ScrollHeight +
@@ -88,9 +87,9 @@ window.addEventListener("load", () => {
               extendTimeline: true,
               effect: (targets, config) => {
               let parent = targets[0];
-              let en = parent.querySelector('.section_title--en');
-              let line = parent.querySelector('.section_title--line');
-              let ja = parent.querySelector('.section_title--ja');
+              let en = parent.querySelector('.sss_title--en');
+              let line = parent.querySelector('.sss_title--line');
+              let ja = parent.querySelector('.sss_title--ja');
 
               let tl = gsap.timeline({
                           onStart: () => {
@@ -124,9 +123,9 @@ window.addEventListener("load", () => {
               extendTimeline: true,
               effect: (targets, config) => {
                   let parent = targets[0];
-                  let en = parent.querySelector('.section_title--en');
-                  let line = parent.querySelector('.section_title--line');
-                  let ja = parent.querySelector('.section_title--ja');
+                  let en = parent.querySelector('.sss_title--en');
+                  let line = parent.querySelector('.sss_title--line');
+                  let ja = parent.querySelector('.sss_title--ja');
 
                   let tl = gsap.timeline({
                           onComplete: () => {
@@ -147,8 +146,8 @@ window.addEventListener("load", () => {
               })
 
           // アイコンのアニメーション
-          const sectionIcon = document.querySelectorAll('.section_icon');
-          const classList = [ "section_icon--center", "section_icon--right", "section_icon--hidden-right", "section_icon--hidden-left", "section_icon--left" ];
+          const sectionIcon = document.querySelectorAll('.sss_icon');
+          const classList = [ "sss_icon--center", "sss_icon--right", "sss_icon--hidden-right", "sss_icon--hidden-left", "sss_icon--left" ];
 
           function iconAnime(direction) {
             let currentClasses = Array.from(sectionIcon).map( icon => classList.find(cls => icon.classList.contains(cls)));
@@ -165,16 +164,26 @@ window.addEventListener("load", () => {
               icon.classList.add(currentClasses[newIndex]);
             });
           }
-        let secWrap = document.querySelector('.section__wrapper');
+
+          // link-visible
+          function showLink(index) {
+            document.querySelectorAll('.sss_description--link').forEach(link => {
+              link.classList.remove('active');
+            });
+            const targetLink = document.querySelector(`.sss_description--link-${index}`);
+            if (targetLink) targetLink.classList.add('active');
+          }
+
+        let secWrap = document.querySelector('.sss-wrapper');
         let secWrapOffset = secWrap.getBoundingClientRect().top + window.scrollY;
       
 
           ScrollTrigger.create({
               id: 'wholeanim',
-              trigger: '.section__wrapper',
+              trigger: '.sss-wrapper',
               start: 'top top',
               end: () => `+=${sectionWrapperHeight}`,
-              pin: '.section',
+              pin: '.smooth-scroll-stage',
               pinSpacing: false,
               scrub: true,
               invalidateOnRefresh: true,
@@ -187,7 +196,7 @@ window.addEventListener("load", () => {
           // アニメーション01
         let animation01 = ScrollTrigger.create({
                 id: 'anim',
-                trigger: '.section__wrapper',
+                trigger: '.sss-wrapper',
                 start: "top top",
                 end: () => `+=${secWrapOffset}`,
                 scrub: true,
@@ -195,11 +204,14 @@ window.addEventListener("load", () => {
                 onEnter: () => {
                   flowerIn().play();
                 },
+                onLeaveBack: () => {
+                  flowerOut().play();
+                },
                 markers: true
           });
         
         let tl01 = gsap.timeline();
-        tl01.fromTo('.section_icon-wrapper',{
+        tl01.fromTo('.sss_icon-wrapper',{
           opacity : 0,
           y : 20
         },{
@@ -213,7 +225,7 @@ window.addEventListener("load", () => {
             scrub: true
         }
         })
-        .fromTo('.section_title-wrapper',{
+        .fromTo('.sss_title-wrapper',{
           opacity : 0,
           y : 20
         },{
@@ -226,12 +238,13 @@ window.addEventListener("load", () => {
             end : animation01.end,
             scrub: true,
             onEnter : ()=> {
+              showLink(1);
               gsap.timeline()
-              .titlein('.section_title--01', { duration : 0.025 })
+              .titlein('.sss_title--01', { duration : 0.025 })
             }
         }
         }, 0.05)
-        .fromTo('.section_description--01',{
+        .fromTo('.sss_description--01',{
           opacity : 0,
           y : 20
         },{
@@ -249,24 +262,25 @@ window.addEventListener("load", () => {
           // アニメーション02
           let animation02 = ScrollTrigger.create({
             id: 'anim0101',
-            trigger: '.section__wrapper',
+            trigger: '.sss-wrapper',
             start:`${animation01.end - secWrapOffset}px top` ,
             end: () => `+=${description01Height}`,
             scrub: true,
             invalidateOnRefresh: true,
             markers: true,
             onEnterBack: ()=>{
+              showLink(1);
               flowerIn().play();
             },
             onLeave: ()=>{
               flowerOut().play();
               gsap.timeline()
-              .titleout('.section_title--01', { duration : 0.025 })
+              .titleout('.sss_title--01', { duration : 0.025 })
             }
           });
         
         let tl02 = gsap.timeline();
-        tl02.to('.section_description--01', {
+        tl02.to('.sss_description--01', {
           scrollTo : description01Height ,
           scrollTrigger :{
           trigger : animation02.trigger,
@@ -279,24 +293,29 @@ window.addEventListener("load", () => {
           // アニメーション03
           let animation03 = ScrollTrigger.create({
             id: 'anim0102',
-            trigger: '.section__wrapper',
+            trigger: '.sss-wrapper',
             start: `${animation02.end - secWrapOffset}px top`,
             end: () => `+=${description01.clientHeight}`,
             scrub: true,
             invalidateOnRefresh: true,
             markers: true,
             onEnter: ()=>{
+              showLink(2);
               gsap.timeline()
-              .titlein('.section_title--02', { duration : 0.025 });
+              .titlein('.sss_title--02', { duration : 0.025 });
               iconAnime('enter');
+              stage2().play();
+              ribbonIn().play();
             },
             onLeaveBack: ()=>{
               iconAnime('reverse');
+              stage1().play();
+              ribbonOut().play();
             }
           });
           
           let tl03 = gsap.timeline();
-          tl03.to('.section_description--01',{
+          tl03.to('.sss_description--01',{
             y : `-=${descriptionWrapper.clientHeight * 1.1 }`,
             opacity : 0,
             scrollTrigger :{
@@ -306,7 +325,7 @@ window.addEventListener("load", () => {
               scrub: true,
               }
           })
-          .fromTo('.section_description--02',{
+          .fromTo('.sss_description--02',{
             y : `+=${descriptionWrapper.clientHeight}`,
             opacity : 0
           },{
@@ -323,24 +342,29 @@ window.addEventListener("load", () => {
           // アニメーション04
           let animation04 = ScrollTrigger.create({
             id: 'anim0201',
-            trigger: '.section__wrapper',
+            trigger: '.sss-wrapper',
             start: `${animation03.end - secWrapOffset}px top`,
             end:() =>  `+=${description02Height}`,
             scrub: true, 
             invalidateOnRefresh: true,     
             markers: true,
+            onEnterBack: () => {
+              showLink(2);
+            },
             onLeave: ()=>{
+              ribbonOut().play();
               gsap.timeline()
-              .titleout('.section_title--02', { duration : 0.025 });
+              .titleout('.sss_title--02', { duration : 0.025 });
             },
             onLeaveBack : ()=>{
+              ribbonIn().play();
               gsap.timeline()
-              .titleout('.section_title--02', { duration : 0.025 })
-              .titlein('.section_title--01', { duration : 0.025 });
+              .titleout('.sss_title--02', { duration : 0.025 })
+              .titlein('.sss_title--01', { duration : 0.025 });
             }
           })
           let tl04 = gsap.timeline();
-            tl04.to('.section_description--02', {
+            tl04.to('.sss_description--02', {
               scrollTo : description02Height,
               scrollTrigger :{
               trigger : animation04.trigger,
@@ -353,24 +377,29 @@ window.addEventListener("load", () => {
           // アニメーション05
           let animation05 = ScrollTrigger.create({
             id: 'anim0202',
-            trigger: '.section__wrapper',
+            trigger: '.sss-wrapper',
             start: `${animation04.end - secWrapOffset}px top`,
             end: () => `+=${description02.clientHeight}`,
             scrub: true,
             invalidateOnRefresh: true,
             markers: true,
             onEnter: ()=>{
+              showLink(3);
+              stage3().play();
+              butterflyIn().play();
               gsap.timeline()
-              .titlein('.section_title--03', { duration : 0.025 });
+              .titlein('.sss_title--03', { duration : 0.025 });
               iconAnime('enter');
             },
             onLeaveBack: ()=>{
+              stage2().play();
+              butterflyOut().play();
               iconAnime('reverse');
             }
           })
           
           let tl05 = gsap.timeline();
-          tl05.to('.section_description--02',{
+          tl05.to('.sss_description--02',{
             y : `-=${descriptionWrapper.clientHeight * 1.1 }`,
             opacity : 0,
             scrollTrigger :{
@@ -380,7 +409,7 @@ window.addEventListener("load", () => {
               scrub: true,
               }
           })
-          .fromTo('.section_description--03',{
+          .fromTo('.sss_description--03',{
             y : `+=${descriptionWrapper.clientHeight}`,
             opacity : 0
           },{
@@ -397,25 +426,30 @@ window.addEventListener("load", () => {
           // アニメーション06
           let animation06 = ScrollTrigger.create({
             id: 'anim0301',
-            trigger: '.section__wrapper',
+            trigger: '.sss-wrapper',
             start: `${animation05.end - secWrapOffset}px top`,
             end:() =>  `+=${description03Height}`,
             scrub: true,
             invalidateOnRefresh: true,
             markers: true,
+            onEnterBack: () =>{
+              showLink(3)
+            },
             onLeave: ()=>{
+              butterflyOut().play();
               gsap.timeline()
-                .titleout('.section_title--03', { duration : 0.025 })
+                .titleout('.sss_title--03', { duration : 0.025 })
             },
             onLeaveBack : ()=>{
+              butterflyIn().play();
               gsap.timeline()
-              .titleout('.section_title--03', { duration : 0.025 })
-              .titlein('.section_title--02', { duration : 0.025 });
+              .titleout('.sss_title--03', { duration : 0.025 })
+              .titlein('.sss_title--02', { duration : 0.025 });
             }
           });
         
           let tl06 = gsap.timeline();
-            tl06.to('.section_description--03', {
+            tl06.to('.sss_description--03', {
               scrollTo : description03Height ,
               scrollTrigger :{
               trigger : animation06.trigger,
@@ -428,24 +462,29 @@ window.addEventListener("load", () => {
           // アニメーション07
           let animation07 = ScrollTrigger.create({
             id: 'anim0302',
-            trigger: '.section__wrapper',
+            trigger: '.sss-wrapper',
             start: `${animation06.end - secWrapOffset}px top`,
             end: () => `+=${description03.clientHeight}`,
             scrub: true,
             invalidateOnRefresh: true,
             markers: true,
             onEnter: ()=>{
+              showLink(4);
+              stage4().play();
+              heartIn().play();
               gsap.timeline()
-              .titlein('.section_title--04', { duration : 0.025 });
+              .titlein('.sss_title--04', { duration : 0.025 });
               iconAnime('enter');
             },
             onLeaveBack: ()=>{
+              stage3().play();
+              heartOut().play();
               iconAnime('reverse');
             }			
           })
           
             let tl07 = gsap.timeline();
-          tl07.to('.section_description--03',{
+          tl07.to('.sss_description--03',{
             y : `-=${descriptionWrapper.clientHeight * 1.1 }`,
             opacity : 0,
             scrollTrigger :{
@@ -455,7 +494,7 @@ window.addEventListener("load", () => {
               scrub: true,
               }
           })
-          .fromTo('.section_description--04',{
+          .fromTo('.sss_description--04',{
             y : `+=${descriptionWrapper.clientHeight}`,
             opacity : 0
           },{
@@ -472,25 +511,30 @@ window.addEventListener("load", () => {
           // アニメーション08
           let animation08 = ScrollTrigger.create({
             id: 'anim0401',
-            trigger: '.section__wrapper',
+            trigger: '.sss-wrapper',
             start: `${animation07.end - secWrapOffset}px top`,
             end: () => `+=${description04Height}`,
             scrub: true,
             invalidateOnRefresh: true,
             markers: true,
+            onEnterBack: () => {
+              showLink(4);
+            },
             onLeave: ()=>{
+              heartOut().play();
               gsap.timeline()
-                .titleout('.section_title--04', { duration : 0.025 })
+                .titleout('.sss_title--04', { duration : 0.025 })
             },
             onLeaveBack : ()=>{
+              heartIn().play();
               gsap.timeline()
-              .titleout('.section_title--04', { duration : 0.025 })
-              .titlein('.section_title--03', { duration : 0.025 });
+              .titleout('.sss_title--04', { duration : 0.025 })
+              .titlein('.sss_title--03', { duration : 0.025 });
             }
           })
           
           let tl08 = gsap.timeline();
-            tl08.to('.section_description--04', {
+            tl08.to('.sss_description--04', {
               scrollTo : description04Height ,
               scrollTrigger :{
               trigger : animation08.trigger,
@@ -503,24 +547,29 @@ window.addEventListener("load", () => {
           // アニメーション09
           let animation09 = ScrollTrigger.create({
             id: 'anim0402',
-            trigger: '.section__wrapper',
+            trigger: '.sss-wrapper',
             start: `${animation08.end - secWrapOffset}px top`,
             end: () => `+=${description04.clientHeight}`,
             scrub: true,
             invalidateOnRefresh: true,
             markers: true,
             onEnter: ()=>{
+              showLink(5);
+              stage5().play();
+              roseIn().play();
               gsap.timeline()
-              .titlein('.section_title--05', { duration : 0.025 });
+              .titlein('.sss_title--05', { duration : 0.025 });
               iconAnime('enter');
             },
             onLeaveBack: ()=>{
+              stage4().play();
+              roseOut().play();
               iconAnime('reverse');
             }
           })
           
           let tl09 = gsap.timeline();
-            tl09.to('.section_description--04',{
+            tl09.to('.sss_description--04',{
             y : `-=${descriptionWrapper.clientHeight * 1.1 }`,
             opacity : 0,
             scrollTrigger :{
@@ -530,7 +579,7 @@ window.addEventListener("load", () => {
               scrub: true,
               }
           })
-          .fromTo('.section_description--05',{
+          .fromTo('.sss_description--05',{
             y : `+=${descriptionWrapper.clientHeight}`,
             opacity : 0
           },{
@@ -547,7 +596,7 @@ window.addEventListener("load", () => {
           // アニメーション10
           let animation10 = ScrollTrigger.create({
             id: 'anim0501',
-            trigger: '.section__wrapper',
+            trigger: '.sss-wrapper',
             start: `${animation09.end - secWrapOffset}px top`,
             end: () => `+=${description05Height}`,
             scrub: true,
@@ -555,12 +604,12 @@ window.addEventListener("load", () => {
             markers: true,
             onLeaveBack : ()=>{
               gsap.timeline()
-              .titleout('.section_title--05', { duration : 0.025 })
-              .titlein('.section_title--04', { duration : 0.025 });
+              .titleout('.sss_title--05', { duration : 0.025 })
+              .titlein('.sss_title--04', { duration : 0.025 });
             }
           })
           let tl10 = gsap.timeline();
-            tl10.to('.section_description--05', {
+            tl10.to('.sss_description--05', {
               scrollTo : description05Height ,
               scrollTrigger :{
               trigger : animation10.trigger,
@@ -573,20 +622,24 @@ window.addEventListener("load", () => {
           // アニメーション11
           let animation11 = ScrollTrigger.create({
             id: 'anim0502',
-            trigger: '.section__wrapper',
+            trigger: '.sss-wrapper',
             start: `${animation10.end - secWrapOffset}px top`,
             end: () => `+=${description05.clientHeight}`,
             scrub: true,
             invalidateOnRefresh: true,
             markers: true,
+            onLeave: () => {
+              roseOut().play();
+            },
             onEnterBack: () => {
-              gsap.set('.section', { y: 0 });
+              roseIn().play();
+              gsap.set('.smooth-scroll-stage', { y: 0 });
               ScrollTrigger.getById('wholeanim')?.enable();
               ScrollTrigger.refresh();
             }
           })
           let tl11 = gsap.timeline();
-            tl11.to('.section',{
+            tl11.to('.smooth-scroll-stage',{
             y : `-=${window.innerHeight}`,
             scrollTrigger :{
             trigger : animation11.trigger,
@@ -604,12 +657,12 @@ window.addEventListener("load", () => {
 
     // リサイズ時に関数を再実行
     window.addEventListener('resize', () => {
-        document.querySelectorAll('.section_description').forEach(el => {
+        document.querySelectorAll('.sss_description').forEach(el => {
           el.scrollTop = 0;
         });
         
-        gsap.set('.section', { clearProps: "all" });
-        gsap.set('.section_description', { clearProps: "all" });
+        gsap.set('.smooth-scroll-stage', { clearProps: "all" });
+        gsap.set('.sss_description', { clearProps: "all" });
       ScrollTrigger.getById('wholeanim')?.kill();
       setScrollTriggers();
       ScrollTrigger.refresh(); // 新しい計算値を反映させるためにrefresh
