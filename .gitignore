@@ -35,3 +35,7 @@ assets/video/
 # not chasing compiled css file
 assets/css/smooth-scroll-stage.css
 assets/css/smooth-scroll-stage.css.map
+
+# Not publishing GitHub
+assets/js
+style.css
