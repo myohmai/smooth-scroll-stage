@@ -187,7 +187,6 @@ window.addEventListener("load", () => {
               pinSpacing: false,
               scrub: true,
               invalidateOnRefresh: true,
-              markers: true,
               onLeave: () => {
                 ScrollTrigger.getById('wholeanim')?.disable();
               }
@@ -206,8 +205,7 @@ window.addEventListener("load", () => {
                 },
                 onLeaveBack: () => {
                   flowerOut().play();
-                },
-                markers: true
+                }
           });
         
         let tl01 = gsap.timeline();
@@ -267,7 +265,6 @@ window.addEventListener("load", () => {
             end: () => `+=${description01Height}`,
             scrub: true,
             invalidateOnRefresh: true,
-            markers: true,
             onEnterBack: ()=>{
               showLink(1);
               flowerIn().play();
@@ -298,7 +295,6 @@ window.addEventListener("load", () => {
             end: () => `+=${description01.clientHeight}`,
             scrub: true,
             invalidateOnRefresh: true,
-            markers: true,
             onEnter: ()=>{
               showLink(2);
               gsap.timeline()
@@ -347,7 +343,6 @@ window.addEventListener("load", () => {
             end:() =>  `+=${description02Height}`,
             scrub: true, 
             invalidateOnRefresh: true,     
-            markers: true,
             onEnterBack: () => {
               showLink(2);
             },
@@ -382,7 +377,6 @@ window.addEventListener("load", () => {
             end: () => `+=${description02.clientHeight}`,
             scrub: true,
             invalidateOnRefresh: true,
-            markers: true,
             onEnter: ()=>{
               showLink(3);
               stage3().play();
@@ -431,7 +425,6 @@ window.addEventListener("load", () => {
             end:() =>  `+=${description03Height}`,
             scrub: true,
             invalidateOnRefresh: true,
-            markers: true,
             onEnterBack: () =>{
               showLink(3)
             },
@@ -467,7 +460,6 @@ window.addEventListener("load", () => {
             end: () => `+=${description03.clientHeight}`,
             scrub: true,
             invalidateOnRefresh: true,
-            markers: true,
             onEnter: ()=>{
               showLink(4);
               stage4().play();
@@ -516,7 +508,6 @@ window.addEventListener("load", () => {
             end: () => `+=${description04Height}`,
             scrub: true,
             invalidateOnRefresh: true,
-            markers: true,
             onEnterBack: () => {
               showLink(4);
             },
@@ -552,7 +543,6 @@ window.addEventListener("load", () => {
             end: () => `+=${description04.clientHeight}`,
             scrub: true,
             invalidateOnRefresh: true,
-            markers: true,
             onEnter: ()=>{
               showLink(5);
               stage5().play();
@@ -601,7 +591,6 @@ window.addEventListener("load", () => {
             end: () => `+=${description05Height}`,
             scrub: true,
             invalidateOnRefresh: true,
-            markers: true,
             onLeaveBack : ()=>{
               gsap.timeline()
               .titleout('.sss_title--05', { duration : 0.025 })
@@ -627,7 +616,6 @@ window.addEventListener("load", () => {
             end: () => `+=${description05.clientHeight}`,
             scrub: true,
             invalidateOnRefresh: true,
-            markers: true,
             onLeave: () => {
               roseOut().play();
             },
