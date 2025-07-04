@@ -1,0 +1,42 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# mac os setting
+.DS_Store
+
+# img folder
+img/
+
+# video folder
+assets/video/
+
+# not chasing compiled css file
+assets/css/smooth-scroll-stage.css
+assets/css/smooth-scroll-stage.css.map
+
+# Not publishing GitHub
+assets/js
+style.css
+gradient-controller.html
