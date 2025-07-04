@@ -1,3 +1,6 @@
-export default {
-    base: '/smooth-scroll-stage/', 
-}
+// vite.config.js
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+    base: '/smooth-scroll-stage/',
+});
